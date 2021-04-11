@@ -27,14 +27,24 @@ const App = () => {
     getMovies(searchValue);
   }, [searchValue]);
 
+  useEffect (() => {
+    const movieFavourites = JSON.parse(localStorage.getItem('movie-app-favourites'));
+    setFavourites(movieFavourites);
+  },[])
+
+  const saveToLocalStorage = (items) => {
+    localStorage.setItem("movie-app-favourites", JSON.stringify(items));    
+  }
+
   const addToFavourites = (movie) => {    
-    const newFavouriteList = [... favourites, movie];
+    const newFavouriteList = [...favourites, movie];
     setFavourites(newFavouriteList);
+    saveToLocalStorage(newFavouriteList);
   }
 
   const removeFromFavourites = (movieToRemove) => {    
     const newFavourites = favourites.filter((movie) => movie.imdbID !== movieToRemove.imdbID);
-    setFavourites(newFavourites);
+    setFavourites(newFavourites);    
   }
 
   return (
