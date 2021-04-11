@@ -37,6 +37,9 @@ const App = () => {
   }
 
   const addToFavourites = (movie) => {    
+
+    if (favourites.indexOf(movie) !== -1) { return; }
+    
     const newFavouriteList = [...favourites, movie];
     setFavourites(newFavouriteList);
     saveToLocalStorage(newFavouriteList);
@@ -45,7 +48,9 @@ const App = () => {
   const removeFromFavourites = (movieToRemove) => {    
     const newFavourites = favourites.filter((movie) => movie.imdbID !== movieToRemove.imdbID);
     setFavourites(newFavourites);    
+    saveToLocalStorage(newFavourites);
   }
+  
 
   return (
     <div className = 'container-fluid movie-list'>
@@ -57,10 +62,11 @@ const App = () => {
         <MovieList movies = {movies} 
         favouriteMovie = {AddFavourites}
         handleFavourites = {addToFavourites}/>
-      </div>
-      <div className = 'row'>
-        <Header header = 'Favourites'/>
       </div>     
+        {favourites.length > 0 && 
+          <div className = 'row'>
+          <Header header = 'Favourites'/>
+          </div>}
       <div className = 'row'>
         <MovieList movies = {favourites}
          favouriteMovie = {RemoveFavourites}
