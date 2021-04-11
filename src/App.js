@@ -4,10 +4,13 @@ import './App.css';
 import MovieList from './components/MovieList';
 import Header from './components/Header';
 import SearchBox from './components/SearchBox';
+import AddFavourites from './components/AddFavourites';
+import RemoveFavourites from './components/RemoveFavourites';
 
 const App = () => {
   const [movies, setMovies] = useState([]);
   const [searchValue, setSearchValue] = useState('');
+  const [favourites, setFavourites] = useState([]);
   
   const getMovies = async (searchValue) => {
     const omdbApiKey = process.env.REACT_APP_OMDB_API_KEY;   
@@ -24,6 +27,16 @@ const App = () => {
     getMovies(searchValue);
   }, [searchValue]);
 
+  const addToFavourites = (movie) => {    
+    const newFavouriteList = [... favourites, movie];
+    setFavourites(newFavouriteList);
+  }
+
+  const removeFromFavourites = (movieToRemove) => {    
+    const newFavourites = favourites.filter((movie) => movie.imdbID !== movieToRemove.imdbID);
+    setFavourites(newFavourites);
+  }
+
   return (
     <div className = 'container-fluid movie-list'>
       <div className = 'row'>
@@ -31,7 +44,17 @@ const App = () => {
       </div>
       <SearchBox searchValue={searchValue} setSearchValue={setSearchValue}/>
       <div className = 'row'>
-        <MovieList movies = {movies}/>
+        <MovieList movies = {movies} 
+        favouriteMovie = {AddFavourites}
+        handleFavourites = {addToFavourites}/>
+      </div>
+      <div className = 'row'>
+        <Header header = 'Favourites'/>
+      </div>     
+      <div className = 'row'>
+        <MovieList movies = {favourites}
+         favouriteMovie = {RemoveFavourites}
+         handleFavourites = {removeFromFavourites}/> 
       </div>
     </div>
   );
