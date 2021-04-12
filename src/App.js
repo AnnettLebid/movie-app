@@ -39,7 +39,7 @@ const App = () => {
   const addToFavourites = (movie) => {    
 
     if (favourites.indexOf(movie) !== -1) { return; }
-    
+
     const newFavouriteList = [...favourites, movie];
     setFavourites(newFavouriteList);
     saveToLocalStorage(newFavouriteList);
@@ -52,7 +52,7 @@ const App = () => {
   }
   
 
-  return (
+  return (   
     <div className = 'container-fluid movie-list'>
       <div className = 'row'>
         <Header header = 'Movies'/>
@@ -72,7 +72,7 @@ const App = () => {
          favouriteMovie = {RemoveFavourites}
          handleFavourites = {removeFromFavourites}/> 
       </div>
-    </div>
+    </div>   
   );
 }
 
