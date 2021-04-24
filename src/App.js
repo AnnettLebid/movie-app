@@ -29,8 +29,7 @@ const App = () => {
 
   useEffect (() => {
     const movieFavourites = JSON.parse(localStorage.getItem('movie-app-favourites'));
-    console.log('movieFavourites', movieFavourites)
-    setFavourites(movieFavourites);
+    movieFavourites ? setFavourites(movieFavourites) : [];    
   },[])
 
   const saveToLocalStorage = (items) => {
@@ -69,7 +68,7 @@ const App = () => {
           <Header header = 'Favourites'/>
           </div>}
       <div className = 'row'>
-        <MovieList movies = {favourites}
+        <MovieList movies = {favourites ?  favourites : []}
          favouriteMovie = {RemoveFavourites}
          handleFavourites = {removeFromFavourites}/> 
       </div>
