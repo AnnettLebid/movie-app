@@ -1,7 +1,7 @@
 import React from 'react';
 
 const MovieList = props => {
-  console.log(props)
+ 
   const FavouriteMovie = props.favouriteMovie;  
     
   return (
