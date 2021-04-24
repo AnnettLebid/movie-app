@@ -14,7 +14,7 @@ const App = () => {
   
   const getMovies = async (searchValue) => {
     const omdbApiKey = process.env.REACT_APP_OMDB_API_KEY;   
-    const url = `http://www.omdbapi.com/?s=${searchValue}&apikey=${omdbApiKey}`
+    const url = `https://www.omdbapi.com/?s=${searchValue}&apikey=${omdbApiKey}`
     const response = await fetch(url);
     const responseJson = await response.json();    
 
@@ -29,6 +29,7 @@ const App = () => {
 
   useEffect (() => {
     const movieFavourites = JSON.parse(localStorage.getItem('movie-app-favourites'));
+    console.log('movieFavourites', movieFavourites)
     setFavourites(movieFavourites);
   },[])
 
@@ -38,9 +39,9 @@ const App = () => {
 
   const addToFavourites = (movie) => {    
 
-    if (favourites.indexOf(movie) !== -1) { return; }
+    if (favourites && favourites.indexOf(movie) !== -1) { return; }
 
-    const newFavouriteList = [...favourites, movie];
+    const newFavouriteList = [movie, ...favourites || []];
     setFavourites(newFavouriteList);
     saveToLocalStorage(newFavouriteList);
   }
@@ -63,7 +64,7 @@ const App = () => {
         favouriteMovie = {AddFavourites}
         handleFavourites = {addToFavourites}/>
       </div>     
-        {favourites.length > 0 && 
+        {favourites && favourites.length > 0 && 
           <div className = 'row'>
           <Header header = 'Favourites'/>
           </div>}
