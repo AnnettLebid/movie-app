@@ -29,18 +29,17 @@ const App = () => {
 
   useEffect (() => {
     const movieFavourites = JSON.parse(localStorage.getItem('movie-app-favourites'));
-    movieFavourites ? setFavourites(movieFavourites) : [];    
+    if (movieFavourites) {
+			setFavourites(movieFavourites)};     
   },[])
 
   const saveToLocalStorage = (items) => {
     localStorage.setItem("movie-app-favourites", JSON.stringify(items));    
   }
 
-  const addToFavourites = (movie) => {    
+  const addToFavourites = (movie) => {   
 
-    if (favourites && favourites.indexOf(movie) !== -1) { return; }
-
-    const newFavouriteList = [movie, ...favourites || []];
+    const newFavouriteList = [ ...favourites, movie];
     setFavourites(newFavouriteList);
     saveToLocalStorage(newFavouriteList);
   }
