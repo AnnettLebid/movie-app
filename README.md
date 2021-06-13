@@ -1,17 +1,25 @@
-This is an app to serch movies and select favourite movies. 
+# Movies App
 
-The following languages/libraries, frameworks and APIs were used:
+## Table of contents
+* [General info](#general-info)
+* [Technologies](#technologies)
+* [Setup](#setup)
 
-React
+## General info
+This is an app where you can serch movies and select favourite movies. 
+It was created with an [The Open Movie Database - OMDb API](https://www.omdbapi.com/).
 
-CSS
+## The following languages/libraries, frameworks and APIs were used:
 
-Bootstrap
+* React
+* Bootstrap
+* The Open Movie Database
+	
+## Setup
+To run this project, install it locally using npm:
 
-The Open Movie Database
+```
+$ npm install
+$ yarn start
 
-get started:
-
-Install all the dependencies: npm install
-
-To run the app: yarn start
+```
