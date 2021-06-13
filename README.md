@@ -6,8 +6,8 @@
 * [Setup](#setup)
 
 ## General info
-This is an app where you can serch movies and select favourite movies. 
-It was created with an [The Open Movie Database - OMDb API](https://www.omdbapi.com/).
+This is an app where you can serch movies and select favorite movies. 
+It was created with [The Open Movie Database - OMDb API](https://www.omdbapi.com/).
 
 ## The following languages/libraries, frameworks and APIs were used:
 
